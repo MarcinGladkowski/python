@@ -7,7 +7,7 @@ def foo_bar(element, data=[]):
     data.append(element)
     return data
 
-
+# default arguments are creating when function is declared
 print(foo_bar(12))
 print(foo_bar(13))
 print(foo_bar(14))
