@@ -1,6 +1,7 @@
 from typing import List, Tuple, Set, Dict, Union, Any, Optional, Callable
 from dataclasses import dataclass
 
+# source (https://bulldogjob.pl/articles/1183-nie-boj-sie-type-hints-w-pythonie)
 
 def multiple_string(factor: int, text: str):
     return text * factor
