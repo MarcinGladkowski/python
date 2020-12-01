@@ -27,3 +27,30 @@ test * 2
 # len(), min(), max()
 
 # Nesting lists
+x = ['a', 'b', ['c', 'd']]
+x[3][1];
+
+
+# Mutable
+# change series of elements in array
+test[1:3] = [1, 2, 3]
+
+# delete elements
+test[1:3] = []
+# or
+del test[1:3]
+
+# appending
+a = ['foo', 'bar']
+a += 20 # Error
+
+a += [20] # singleton list
+
+'''
+Example methods on lists:
+- append()
+- extend()
+- insert()
+- remove()
+- pop()
+'''
