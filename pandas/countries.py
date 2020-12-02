@@ -1,6 +1,7 @@
 # source: https://realpython.com/pandas-read-write-files/
 
 import pandas as pd
+from sqlalchemy import create_engine
 
 data = {
     'CHN': {'COUNTRY': 'China', 'POP': 1_398.72, 'AREA': 9_596.96,
@@ -80,5 +81,55 @@ optional parameters to save csv:
 - header
 '''
 
+# example of usage header
+s = df.to_csv(sep=';', header=False)
+
+print(s)
 
 
+# example of saving file as json
+df.to_json('data-json.json', orient='index')
+
+
+# SQL
+engine = create_engine('sqlite:///data.db', echo=False)
+
+dtypes = {'POP': 'float64', 'AREA': 'float64', 'GDP': 'float64', 'IND_DAY': 'datetime64'}
+
+df = pd.DataFrame(data=data).T.astype(dtype=dtypes)
+
+df.to_sql('data.sql', con=engine, index_label='ID', if_exists='replace')
+
+df = pd.read_sql('data.sql', con=engine, index_col='ID')
+
+print('Data read from sql', df, sep="\n")
+
+# Compress and decompress files
+'''
+.gz, bz2, zip, xz
+'''
+df = pd.DataFrame(data=data).T
+df.to_csv('data.csv.zip')
+
+# Read only columns that you are interested in
+df = pd.read_csv('data.csv.zip', usecols=['COUNTRY', 'AREA'])
+print(df)
+'''
+Another features:
+- skiprows
+- skipfooter
+- nrows
+'''
+
+# Big datasets:
+'''
+Compress and decompress
+Read only data that you needed
+When you read files by read_csv, read_json, read_sql you can specify chunks
+Use less precise data types
+'''
+data_chunk = pd.read_csv('data.csv.zip', index_col=0, chunksize=8)
+print(type(data_chunk))
+
+for chunk in data_chunk:
+    print(chunk)
