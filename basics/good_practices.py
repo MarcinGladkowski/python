@@ -74,5 +74,36 @@ print("You are a great programmer, {} {} {}".format(first_name, middle_name, las
 # and using f-strings
 print(f"You are a great programmer, {first_name} {middle_name} {last_name}")
 
+# List comprehension
+# Doing the same thing for all elements in list
+# Traditional way:
+numbers = [1, 2, 3]
+extended_numbers = []
+for elem in numbers:
+    extended_numbers.append(elem * 2)
 
 
+print(numbers)
+
+print(extended_numbers)
+# Change for it:
+new_extended_list = [item * 2 for item in numbers]
+
+print(new_extended_list)
+
+# more complicated example - a few functions:
+
+
+def process(item):
+    item = item * 2
+    item = item / 5
+    return item
+
+
+new_list = [process(item) for item in numbers]
+print(new_list)
+new_list2 = list(map(process, numbers))
+print(new_list2)
+
+# easy filtering using list comprehension
+filtered = [item for item in numbers if item > 5]
