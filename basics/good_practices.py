@@ -1,4 +1,6 @@
-# source: https://bulldogjob.pl/news/1016-4-czeste-bledy-poczatkujacych-pythonowcow
+# sources:
+# - https://bulldogjob.pl/news/1016-4-czeste-bledy-poczatkujacych-pythonowcow
+# - https://bulldogjob.pl/news/1076-pisz-lepszy-kod-w-pythonie
 
 # use iterators
 my_list = [1, 2, 3]
@@ -59,6 +61,18 @@ def foo2(el, some_list=None):
         some_list = []
     some_list.append(el)
     return some_list
+
+
+# using f-strings to formatting for strings
+first_name = 'Jan'
+last_name = 'Kowalski'
+middle_name = 'Marcin'
+# using %
+print("You are a great programmer, %s %s %s" % (first_name, middle_name, last_name))
+# using str.format
+print("You are a great programmer, {} {} {}".format(first_name, middle_name, last_name))
+# and using f-strings
+print(f"You are a great programmer, {first_name} {middle_name} {last_name}")
 
 
 
