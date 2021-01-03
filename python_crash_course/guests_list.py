@@ -38,6 +38,8 @@ print(guests_list)
 print(f'Welcome to our dinner {guests_list[0]}')
 print(f'Welcome to our dinner {guests_list[1]}')
 
+print(f'Number of guests {len(guests_list)}')
+
 print(guests_list)
 print(guests_list[1])
 del guests_list[0]
