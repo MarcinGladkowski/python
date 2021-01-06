@@ -85,3 +85,57 @@ if 'apples' in favorite_fruits:
 
 if 'bananas' in favorite_fruits:
     print('You love bananas!')
+
+
+# 5.8
+print('\n5.8\n')
+users = ['user1', 'admin', 'user2', 'user3', 'user4']
+
+for user in users:
+    if user == 'admin':
+        print('Hello admin. Do you want to look at report ?')
+    else:
+        print(f'Hello {user}. Thanks for log in')
+
+
+users = []
+
+if not users:
+    print('We have to find users!')
+
+
+# 5.9
+print('\n5.9\n')
+
+current_users = ['Bill', 'Json', 'Robert', 'Elon', 'Bill']
+new_users = ['Elon', 'Tom', 'Peter']
+
+# 5.10
+current_users_lower = [x.lower() for x in current_users]
+
+for new in new_users:
+    if new.lower() in current_users_lower:
+        print(f'Sorry, you cannot use this name! {new}')
+    else:
+        print(f'You can use this name! {new}')
+
+# 5.11
+print('\n5.11\n')
+numbers = [x for x in range(1, 10)]
+
+print(numbers)
+
+for number in numbers:
+    if number == 1:
+        print('1st')
+    elif number == 2:
+        print('2nd')
+    elif number == 3:
+        print('3rd')
+    else:
+        print(f'{number}th')
+
+
+# 5.12
+print('\n5.12\n')
+
