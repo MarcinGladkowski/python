@@ -25,3 +25,21 @@ if input_number % 10 == 0:
     print('Number is multiplication of 10 number')
 else:
     print('Number is not multiplication of 10 number')
+
+
+# 7.4
+print('\n7.4\n')
+pizza_toppings = []
+
+while True:
+    topping = input("Add topping: ")
+
+    if topping == 'finish':
+        break
+
+    pizza_toppings.append(topping)
+    print(f'Added {topping}')
+
+
+# 7.5
+print('\n7.5\n')
