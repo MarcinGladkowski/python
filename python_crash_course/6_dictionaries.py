@@ -15,12 +15,15 @@ print(racing_driver.get('city'))
 # 6.2
 print('\n6.2\n')
 favourites_numbers = {
-    'John': 7,
-    'Json': 1,
-    'Elon': 10,
+    'John': [1, 2, 3],
+    'Json': [10, 100_000],
+    'Elon': [0],
 }
 
-print(favourites_numbers)
+for person, numbers in favourites_numbers.items():
+    print(f'{person} favourite numbers are:')
+    for number in numbers:
+        print(number)
 
 # 6.3
 print('\n6.3\n')
@@ -116,3 +119,23 @@ for person, user_info in people.items():
     print(f'Person data: {person}')
     for key, value in user_info.items():
         print(f'{key}: {value}')
+
+
+# skip 6.8
+# 6.9
+print('\n6.9\n')
+favourite_places = {
+    'Marcin': ['Italy', 'Monte Carlo', 'Hungaroring'],
+    'Json': ['Garden', 'Forrest', 'Beach'],
+    'John': ['Poland', 'Italy', 'Croatia']
+}
+
+for name, places in favourite_places.items():
+    print(f'{name} likes:')
+    for place in places:
+        print(f'{place}')
+
+
+# 6.10
+print('\n6.10\n')
+
