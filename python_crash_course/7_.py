@@ -43,3 +43,60 @@ while True:
 
 # 7.5
 print('\n7.5\n')
+
+while True:
+    age = int(input("Provide your age:"))
+
+    if age < 3:
+        print('Free entry')
+    elif age < 12:
+        print('Ticket price: 10$')
+    else:
+        print('Ticket price: 15$')
+
+
+# 7.6
+print('\n7.6\n')
+# statement
+while True:
+    age = input("Provide your age: ") # check is numeric
+
+    if age == 'finish':
+        break
+
+    if int(age) < 3:
+        print('Free entry')
+    elif int(age) < 12:
+        print('Ticket price: 10$')
+    else:
+        print('Ticket price: 15$')
+
+# active
+active = True
+while active:
+    age = int(input("Provide your age:"))
+
+    if age < 3:
+        print('Free entry')
+    elif age < 12:
+        print('Ticket price: 10$')
+    else:
+        print('Ticket price: 15$')
+
+    if age:
+        active = False
+
+
+# # active
+while True:
+    age = input("Provide your age:")
+
+    if int(age) < 3:
+        print('Free entry')
+    elif int(age) < 12:
+        print('Ticket price: 10$')
+    else:
+        print('Ticket price: 15$')
+
+    if age == 'finish':
+        break
