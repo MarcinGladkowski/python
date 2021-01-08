@@ -100,3 +100,49 @@ while True:
 
     if age == 'finish':
         break
+
+
+# 7.7
+print('\n7.7\n')
+
+while True:
+    print('Test')
+
+
+# 7.8, 7.9
+print('\n7.8 7.9\n')
+
+ordered_sandwiches = ['pastrami','double', 'classic', 'pastrami', 'vege', 'italian', 'pastrami']
+finished_sandwiches = []
+
+print("We don't have pastrami")
+
+while 'pastrami' in ordered_sandwiches:
+    ordered_sandwiches.remove('pastrami')
+
+
+for sandwich in ordered_sandwiches:
+    print(f'prepared sandwich: {sandwich}')
+    finished_sandwiches.append(sandwich)
+
+print('\nFull order')
+for finished in finished_sandwiches:
+    print(f'{finished}')
+
+# 7.10
+print('\n7.10\n')
+
+survey = {}
+
+while True:
+    name = input('Whats your name ?: ')
+    place = input('Where do you love to travel ?: ')
+
+    if place == 'finish' or name == 'finish':
+        break
+
+    survey[name] = place
+
+
+for name, place in survey.items():
+    print(f'{name} wants travel to: {place}')
