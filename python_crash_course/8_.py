@@ -1,3 +1,12 @@
+import printing_functions as pt
+
+# 8.15
+# import make_car
+# import make_car as mk
+# from make_car import make_car
+# from make_car import make_car as mk
+from make_car import *
+
 #
 # def name(parameter1, parameter2)
 #
@@ -108,11 +117,10 @@ print('\n8.10\n')
 
 
 def send_messages(messages):
-    print(messages)
     while messages:
         sent = messages.pop()
         sent_messages.append(sent)
-       # print(f'{sent}')
+        print(f'added to send messages: {sent}')
 
 
 send_messages(messages_to_show)
@@ -123,6 +131,55 @@ print(sent_messages)
 # 8.11
 print('\n8.11\n')
 print(messages_to_show)
-show_messages(messages_to_show[:])
+send_messages(messages_to_show[:])
 print(messages_to_show)
 print(sent_messages)
+
+
+# 8.12
+print('\n8.12\n')
+
+
+def make_sandwitch(*toppings):
+    """use *args to get all arguments - the number of argumenr is optional"""
+    for topping in toppings:
+       print(f'{topping} added to sandwitch')
+
+
+make_sandwitch('cheese', 'ham', 'butter')
+print('\n')
+make_sandwitch('cheese', 'ham', 'butter', 'tomatoes')
+print('\n')
+make_sandwitch('cheese', 'ham', 'butter', 'tomatoes', 'cucumber')
+
+
+
+# 8.13
+print('\n8.13\n')
+
+
+def build_profile(first, last, **user_info):
+    ''' Build profile using **kwar dictionary'''
+    user_info['first_name'] = first
+    user_info['last_name'] = last
+    return user_info
+
+
+my_profile = build_profile('Marcin', 'Programmer', main_lang='PHP', second_lang='JS', learning_lang='Python')
+print(my_profile)
+
+
+# 8.14
+print('\n8.14\n')
+
+car = make_car('Honda', 'Civic', color='silver', version='TypeR')
+print(car)
+
+
+# 8.15
+print('\n8.15\n')
+unprinted_models = ['Honda', 'Mercedes']
+completed_models = []
+
+pt.print_models(unprinted_models, completed_models)
+pt.show_completed_models(completed_models)
