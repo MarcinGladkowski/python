@@ -6,6 +6,13 @@ class Restaurant:
     def __init__(self, restaurant_name, cuisine_type):
         self.restaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
+        self.number_served = 0
+
+    def set_number_served(self, number_served):
+        self.number_served = number_served
+
+    def increment_number_served(self, increment):
+        self.number_served += increment
 
     def describe_restaurant(self):
         print(f'Welcome in {self.restaurant_name}. We cook the best {self.cuisine_type}')
@@ -43,6 +50,13 @@ class User:
         self.role = role
         self.last_name = last_name
         self.first_name = first_name
+        self.login_attempts = 0
+
+    def increment_login_attempts(self):
+        self.login_attempts += 1
+
+    def reset_login_attempts(self):
+        self.login_attempts = 0
 
     def describe_user(self):
         print(f'{self.first_name}, {self.last_name}, {self.role}, {self.active}, {self.email}')
@@ -59,3 +73,27 @@ user1.greet_user()
 
 user2.describe_user()
 user2.greet_user()
+
+
+# 9.4
+print('\n9.4\n')
+print(restaurant.number_served)
+restaurant.number_served = 10
+print(restaurant.number_served)
+
+
+restaurant_2.set_number_served(20)
+print(restaurant_2.number_served)
+
+restaurant_3.increment_number_served(30)
+print(restaurant_3.number_served)
+
+# 9.5
+print('\n9.5\n')
+new_user = User('user3', 'user3', 'user', False, 'noemail@xx')
+new_user.increment_login_attempts()
+new_user.increment_login_attempts()
+new_user.increment_login_attempts()
+print(new_user.login_attempts)
+new_user.reset_login_attempts()
+print(new_user.login_attempts)
