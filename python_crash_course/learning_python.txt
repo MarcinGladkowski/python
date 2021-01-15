@@ -1,0 +1,3 @@
+In Python we can create object using classes
+In Python we can store data in lists, dictionaries and tuples
+In Python we can create interactive scrips
