@@ -1,3 +1,4 @@
+import json
 # 10.1
 # read file at once
 filepath = 'learning_python.txt'
@@ -107,3 +108,74 @@ with open('Model_Flying_Machines.txt') as file_object:
 
 count = [line.lower().count('model') for line in lines]
 print(sum(count)) # 86
+
+
+print('\n')
+# 10.11
+user_favourite_number = input('What\'s your favourite number? ')
+favourite_number_filename = 'favourite_number.json'
+
+with open(favourite_number_filename, 'w') as f:
+    json.dump(user_favourite_number, f)
+
+
+with open(favourite_number_filename) as f:
+    print(f'Your favourite number is {json.load(f)}')
+
+
+print('\n')
+# 10.12
+
+favourite_number_filename = 'favourite_number.json'
+with open(favourite_number_filename) as f:
+    file_data = json.load(f)
+    if file_data:
+        print(f'Your favourite number is {file_data}')
+    else:
+        user_favourite_number = input('What\'s your favourite number? ')
+
+        with open(favourite_number_filename, 'w') as f:
+            json.dump(user_favourite_number, f)
+
+
+# print('\n')
+# 10.13
+def get_stored_username():
+    """Get username from json file"""
+    filename = 'username.json'
+    try:
+        with open(filename) as f:
+            username = json.load(f)
+    except FileNotFoundError:
+        return None
+    else:
+        return username
+
+
+def get_new_username():
+    """Ask user to input username and write it into a file"""
+    username = input("What's your username?: ")
+    filename = 'username.json'
+    with open(filename, 'w') as f:
+        json.dump(username, f)
+    return username
+
+
+def greet_user():
+    """Greet a user"""
+    username = get_stored_username()
+    if username:
+
+        answer = input(f"It's your username {username} ? ")
+
+        if answer == 'no':
+            new_username = get_new_username()
+            print(f'Welcome to our system {new_username}')
+
+        print(f'Welcome to our system {username}')
+    else:
+        get_new_username()
+        print('Your\'s name has been stored.')
+
+
+greet_user()
