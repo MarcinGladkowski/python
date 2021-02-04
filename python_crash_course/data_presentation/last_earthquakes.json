@@ -1,0 +1,421 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated": 1612420355000,
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+    "title": "USGS All Earthquakes, Past Hour",
+    "status": 200,
+    "api": "1.10.3",
+    "count": 10
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 2.1400001,
+        "place": "3 km E of Pāhala, Hawaii",
+        "time": 1612420096050,
+        "updated": 1612420292800,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv72340432",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/hv72340432.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 70,
+        "net": "hv",
+        "code": "72340432",
+        "ids": ",hv72340432,",
+        "sources": ",hv,",
+        "types": ",origin,phase-data,",
+        "nst": 46,
+        "dmin": null,
+        "rms": 0.119999997,
+        "gap": 133,
+        "magType": "md",
+        "type": "earthquake",
+        "title": "M 2.1 - 3 km E of Pāhala, Hawaii"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.442840576172,
+          19.2026672363281,
+          33.5699996948242
+        ]
+      },
+      "id": "hv72340432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.3,
+        "place": "19km NW of Westmorland, CA",
+        "time": 1612419784850,
+        "updated": 1612420013093,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39540391",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci39540391.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 26,
+        "net": "ci",
+        "code": "39540391",
+        "ids": ",ci39540391,",
+        "sources": ",ci,",
+        "types": ",nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 6,
+        "dmin": 0.09869,
+        "rms": 0.26,
+        "gap": 187,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 1.3 - 19km NW of Westmorland, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.7396667,
+          33.1733333,
+          1.14
+        ]
+      },
+      "id": "ci39540391"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.04,
+        "place": "8km NW of The Geysers, CA",
+        "time": 1612418931760,
+        "updated": 1612419028858,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc73518231",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc73518231.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 17,
+        "net": "nc",
+        "code": "73518231",
+        "ids": ",nc73518231,",
+        "sources": ",nc,",
+        "types": ",nearby-cities,origin,phase-data,",
+        "nst": 23,
+        "dmin": 0.0116,
+        "rms": 0.02,
+        "gap": 57,
+        "magType": "md",
+        "type": "earthquake",
+        "title": "M 1.0 - 8km NW of The Geysers, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.8170013,
+          38.8336678,
+          1.53
+        ]
+      },
+      "id": "nc73518231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.8,
+        "place": "29 km SE of Cantwell, Alaska",
+        "time": 1612418429849,
+        "updated": 1612418693168,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ak0211lzdt7p",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak0211lzdt7p.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 50,
+        "net": "ak",
+        "code": "0211lzdt7p",
+        "ids": ",ak0211lzdt7p,",
+        "sources": ",ak,",
+        "types": ",origin,",
+        "nst": null,
+        "dmin": null,
+        "rms": 0.74,
+        "gap": null,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 1.8 - 29 km SE of Cantwell, Alaska"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -148.4631,
+          63.2435,
+          3.3
+        ]
+      },
+      "id": "ak0211lzdt7p"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.79,
+        "place": "10km ESE of Gilroy, CA",
+        "time": 1612418415200,
+        "updated": 1612418512123,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc73518226",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc73518226.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 49,
+        "net": "nc",
+        "code": "73518226",
+        "ids": ",nc73518226,",
+        "sources": ",nc,",
+        "types": ",nearby-cities,origin,phase-data,",
+        "nst": 16,
+        "dmin": 0.08053,
+        "rms": 0.13,
+        "gap": 154,
+        "magType": "md",
+        "type": "earthquake",
+        "title": "M 1.8 - 10km ESE of Gilroy, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4688339,
+          36.9621658,
+          5.67
+        ]
+      },
+      "id": "nc73518226"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.26,
+        "place": "15km E of Ocotillo, CA",
+        "time": 1612418041710,
+        "updated": 1612418260772,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39540383",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci39540383.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 24,
+        "net": "ci",
+        "code": "39540383",
+        "ids": ",ci39540383,",
+        "sources": ",ci,",
+        "types": ",nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 19,
+        "dmin": 0.1279,
+        "rms": 0.21,
+        "gap": 77,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 1.3 - 15km E of Ocotillo, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.8368333,
+          32.7535,
+          2.35
+        ]
+      },
+      "id": "ci39540383"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 0.73,
+        "place": "15km NE of Ridgecrest, CA",
+        "time": 1612417747280,
+        "updated": 1612417973102,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39540375",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci39540375.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 8,
+        "net": "ci",
+        "code": "39540375",
+        "ids": ",ci39540375,",
+        "sources": ",ci,",
+        "types": ",nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 11,
+        "dmin": 0.1258,
+        "rms": 0.19,
+        "gap": 135,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 0.7 - 15km NE of Ridgecrest, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.5431667,
+          35.6976667,
+          2.55
+        ]
+      },
+      "id": "ci39540375"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.6,
+        "place": "45 km E of Pedro Bay, Alaska",
+        "time": 1612417709419,
+        "updated": 1612418162022,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ak0211lz2nut",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak0211lz2nut.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 39,
+        "net": "ak",
+        "code": "0211lz2nut",
+        "ids": ",ak0211lz2nut,",
+        "sources": ",ak,",
+        "types": ",origin,",
+        "nst": null,
+        "dmin": null,
+        "rms": 0.6,
+        "gap": null,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 1.6 - 45 km E of Pedro Bay, Alaska"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -153.2952,
+          59.8232,
+          115.4
+        ]
+      },
+      "id": "ak0211lz2nut"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 1.5,
+        "place": "3 km W of Knik, Alaska",
+        "time": 1612417283726,
+        "updated": 1612417450540,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ak0211lz15hw",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak0211lz15hw.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 35,
+        "net": "ak",
+        "code": "0211lz15hw",
+        "ids": ",ak0211lz15hw,",
+        "sources": ",ak,",
+        "types": ",origin,",
+        "nst": null,
+        "dmin": null,
+        "rms": 0.55,
+        "gap": null,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 1.5 - 3 km W of Knik, Alaska"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -149.7851,
+          61.4597,
+          51.5
+        ]
+      },
+      "id": "ak0211lz15hw"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 0.4,
+        "place": "9km ENE of Aguanga, CA",
+        "time": 1612417054400,
+        "updated": 1612417278532,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39540367",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci39540367.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 2,
+        "net": "ci",
+        "code": "39540367",
+        "ids": ",ci39540367,",
+        "sources": ",ci,",
+        "types": ",nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 10,
+        "dmin": 0.08693,
+        "rms": 0.26,
+        "gap": 104,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 0.4 - 9km ENE of Aguanga, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.7831667,
+          33.4871667,
+          7.43
+        ]
+      },
+      "id": "ci39540367"
+    }
+  ],
+  "bbox": [
+    -155.44284057617,
+    19.202667236328,
+    1.14,
+    -115.7396667,
+    63.2435,
+    115.4
+  ]
+}
