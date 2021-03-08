@@ -18,3 +18,4 @@ python --version  // ex. Python 3.7.7
 ```
 
 * [Async Await](AsyncAwait)
+* [Zip function](Zip)
