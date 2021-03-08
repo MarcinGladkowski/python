@@ -3,7 +3,7 @@
 
 > Repository contains some exercises, lessons, tips, tricks and other things 
 > about Python
-
+---
 To start create a new virtual environment based on newest version of python3
 ```shell
 python3 -m venv
@@ -16,6 +16,10 @@ Check version
 ```shell
 python --version  // ex. Python 3.7.7
 ```
-
+---
 * [Async Await](AsyncAwait)
 * [Zip function](Zip)
+
+--- 
+#### Links
+* [Python - Matt Harasymczuk](https://python.astrotech.io/)
