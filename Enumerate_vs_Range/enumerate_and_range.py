@@ -21,3 +21,19 @@ print("\nusing range:")
 # get indexes
 for i in range(len(users)):
     print(users[i])
+
+print('\nuse enumerator\n')
+'''
+how works enumerate ? - pack it to generator
+Thats mean, you can use next() function
+'''
+it = enumerate(users)
+print(next(it)) # tuple (0, 'user1')
+print(next(it))
+
+for i, user in enumerate(users):
+    print(f'{i+1}: {user}')
+
+print('\nNext example\n')
+for i, user in enumerate(users, 1):
+    print(f'{i}: {user}')
