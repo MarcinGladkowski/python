@@ -19,6 +19,9 @@ python --version  // ex. Python 3.7.7
 ---
 * [Async Await](AsyncAwait)
 * [Zip function](Zip)
+* [Walrus](Walrus)
+* [String formatting](String_formatting)
+* [Enumerate vs Range](Enumerate_vs_Range)
 
 --- 
 #### Links
