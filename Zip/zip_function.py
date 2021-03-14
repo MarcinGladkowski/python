@@ -2,6 +2,12 @@
 
 from itertools import zip_longest
 
+'''
+zip() can be use for iterate by many iterators in the same time
+Delivered iterators with not the same length can work unexpected (zip cut the data to shortest iterator)
+For above example use a zip_longest() function
+'''
+
 matrix = [[1, 2, 3], [1, 2, 3]]
 
 zip_matrix = zip(matrix)
