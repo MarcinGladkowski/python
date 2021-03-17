@@ -16,6 +16,55 @@ print(test[1:2]) # 'foobar', 3.3
 print(test[::-1]) # reverse list
 print(test[:]) # returns a copy of list (another behaviour on string)
 
+# omit first index for more clear code
+assert test[:3] == test[0:3]
+# omit last index
+assert test[2:] == test[2:len(test)]
+
+'''
+negative values - works from end on the list
+'''
+a = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+print(a)
+print(a[:5])
+print(a[:-1])
+print(a[4:])
+print(a[-3:])
+print(a[2:5])
+print(a[2:-1])
+print(a[-3:-1])
+
+'''
+unpack values from list
+'''
+b, c = a[:2]
+
+'''
+modifying
+'''
+print('\nModifying\n')
+print(f'Start table {a}')
+
+e = a[3:]
+e[1] = 'test'
+print(e)
+print(a)
+
+a[2:7] = ['test1', 'test2', 'test3']
+print(a)
+
+'''
+without indexes - copy
+'''
+g = a[:]
+
+print(g)
+
+'''
+g = a[:] - copy (shall probably)
+g = a - assert a is b # this is the same object - reference to the same place in memory
+'''
+
 # use 'in' and 'not in'
 'foobar' in test
 'barbar' not in test
