@@ -77,7 +77,7 @@ test * 2
 
 # Nesting lists
 x = ['a', 'b', ['c', 'd']]
-x[3][1];
+x[2][1];
 
 
 # Mutable
@@ -91,7 +91,7 @@ del test[1:3]
 
 # appending
 a = ['foo', 'bar']
-a += 20 # Error
+# a += 20 # Error
 
 a += [20] # singleton list
 
@@ -103,3 +103,32 @@ Example methods on lists:
 - remove()
 - pop()
 '''
+
+
+'''
+Get odds and evens by indexes. Super short!
+Based on list[start:end:step]
+'''
+colors = ['red', 'blue', 'orange', 'grey', 'black']
+
+odds = colors[::2]
+evens = colors[1::2]
+
+print(odds, evens)
+
+'''
+Get some values from list
+- don't use strict indexes like list[0], list[1]
+'''
+ages = [0, 9, 10, 12, 3, 4, 8]
+
+# unpack, * -> method catch-all
+first, second, *others = ages
+
+print(first, second, others)
+
+# but this not working: *all = ages
+# usage of more time: *all, *others = ages
+
+
+
