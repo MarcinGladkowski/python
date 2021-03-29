@@ -48,5 +48,7 @@ tools.sort(key=lambda x: x.weight)
 print(tools)
 
 '''
-Sorting using many keys and Tuples // 68
+Sorting using many keys and Tuples 
 '''
+tools.sort(key=lambda x: (x.name, x.weight))
+print(tools)
