@@ -1,4 +1,13 @@
-""" Keyword arguments """
+"""
+Arguments can be injected using positions and keywords
+
+
+Keyword arguments
+- using call with remainder(number=7... its clear which parameter we use
+- we can add to these parameters default values
+- we can easily extend functions by new parameters
+
+"""
 
 
 def remainder(number, divisor):
