@@ -59,3 +59,16 @@ def print_parameters(**kwargs):
 
 
 print_parameters(alpha=1.4, beta=9, gamma=4)
+
+"""
+How to make arguments to have using it with keyword arguments
+- arguments after * have to be used as keyword arguments
+"""
+
+
+def division(number, divisor, *, optional_1, optional_2):
+    pass
+
+
+# cannot call function in this way
+division(1, 2, 3, 4)
