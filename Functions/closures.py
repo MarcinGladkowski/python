@@ -9,15 +9,15 @@ Closures in Python
 '''
 
 
-def sort_priority(values, group):
+def sort_priority(numbers, group):
     found = False
     def helper(x):
+        nonlocal found # to don't create new function
         if x in group:
-            # nonlocal found
             found = True # closure error
             return 0, x
         return 1, x
-    values.sort(key=helper)
+    numbers.sort(key=helper)
     return found
 
 
