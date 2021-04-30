@@ -71,4 +71,16 @@ def division(number, divisor, *, optional_1, optional_2):
 
 
 # cannot call function in this way
-division(1, 2, 3, 4)
+# execute with division(1, 2, 3, 4) generate an error!
+division(1, 2, optional_1=3, optional_2=4)
+
+
+"""
+/ - make the end of positional arguments
+"""
+def safe_division(numerator, denominator, /, *, ignore_overflow=False, ignore_zero_division=False):
+    pass
+
+
+
+
