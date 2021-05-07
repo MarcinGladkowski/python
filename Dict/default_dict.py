@@ -20,7 +20,7 @@ if (japan := visits.get('Japan')) is None:
 
 
 # try to cover behaviour to get better interface
-class Visits:2
+class Visits:
     def __init__(self):
         self.data = {}
 
