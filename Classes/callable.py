@@ -1,4 +1,4 @@
-from collections import defaultdict
+from containers import defaultdict
 
 """
 Functions and methods in Python are higher order. Its mean they are can be uses 
