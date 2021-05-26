@@ -1,4 +1,4 @@
-from containers.abc import Sequence
+from collections.abc import Sequence
 
 '''
 A lot of classes are just bags for data inheritance from list or dict
