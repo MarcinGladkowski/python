@@ -5,3 +5,10 @@ Hints:
 
 Use if statement to judge condition.
 """
+
+
+def decision(value):
+    if value == 'yes':
+        print('Yes')
+    else:
+        print('No')
