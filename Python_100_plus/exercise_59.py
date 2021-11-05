@@ -1,6 +1,7 @@
 """
 Assuming that we have some email addresses in the "username@companyname.com" format,
-please write program to print the user name of a given email address. Both user names and company names are composed of letters only.
+\please write program to print the company name of a given email address.
+Both user names and company names are composed of letters only.
 
 Example: If the following email address is given as input to the program:
 
@@ -8,7 +9,7 @@ john@google.com
 
 Then, the output of the program should be:
 
-john
+google
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
@@ -16,12 +17,14 @@ Hints:
 
 Use \w to match letters.
 """
+import re
 
 
-def email_user(email_address: str):
-    email_list = email_address.split('@')
+def email_company_name(email_address: str):
+    pattern = "(\w+)@((\w+))"
+    matched = re.match(pattern, email_address)
 
-    return email_list[0]
+    return matched.group(2)
 
 
-print(email_user("john@google.com"))
+print(email_company_name("john@google.com"))

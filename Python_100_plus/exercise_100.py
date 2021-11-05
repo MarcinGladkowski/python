@@ -6,4 +6,5 @@ Hint: Use for loop to iterate all possible solutions.
 """
 
 
-
+legs = 94
+heads = 35

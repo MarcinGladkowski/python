@@ -3,13 +3,12 @@ Please write a program to shuffle and print the list [3,6,7,8].
 
 Hints: Use shuffle() function to shuffle a list.
 """
-import random
+from random import shuffle
 
+numbers = [3, 6, 7, 8]
 
-elements = [3, 6, 7, 8]
+shuffle(numbers)
 
-random.shuffle(elements)
-
-print(elements)
+print(numbers)
 
 
