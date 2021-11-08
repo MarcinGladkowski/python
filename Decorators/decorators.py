@@ -20,6 +20,7 @@ def fibonacci(n):
 
 
 fibonacci(4)
+print(fibonacci(4))
 print(fibonacci) # function trace -> not fibonacci!
 help(fibonacci)
 
