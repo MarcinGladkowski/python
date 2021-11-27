@@ -8,7 +8,7 @@ def prime_numbers(n):
 
 
 def better_prime_numbers(n, i=2):
-    if n % i == 0.0 and n != i or n == 1 or n < 0:
+    if n % i == 0.0 and n != i or n < 2:
         return False
 
     if i > int(n ** 0.5):
@@ -29,3 +29,4 @@ assert True == better_prime_numbers(7)
 assert True == better_prime_numbers(29)
 assert True == better_prime_numbers(89)
 assert True == better_prime_numbers(97)
+assert False == better_prime_numbers(99)
