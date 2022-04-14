@@ -1,7 +1,8 @@
 def get_stats():
     return 1, 2
 
-print(get_stats()) # return as tuple!
+
+print(get_stats())  # return as tuple!
 
 '''
 - Functions shouldn't return more than 2 variables
@@ -23,3 +24,21 @@ def careful_divide(a: float, b: float) -> float:
         return a / b
     except ZeroDivisionError:
         raise ValueError('Incorrect input data')
+
+
+'''
+Python functions can be:
+- passed as arguments to other functions
+- returned as values from other functions
+- assigned to variables and stored also in lists
+'''
+
+
+def some_function():
+    pass
+
+
+functions_list = []
+functions_list[some_function]
+
+# function_list[0]() <- to call it

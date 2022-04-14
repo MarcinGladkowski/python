@@ -1,5 +1,6 @@
 class Vehicle:
-    def __init__(self) -> None:
+    def __init__(self, wheels=0) -> None:
+        self.wheels = wheels
         self.turn_on()
 
     def turn_on(self):
@@ -10,4 +11,5 @@ class Car(Vehicle):
     pass
 
 
-car = Car()
+car = Car(wheels=4)
+print(car.wheels)
