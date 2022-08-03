@@ -61,6 +61,7 @@ class SecondExample:
 example = Example()
 
 second_example = SecondExample()
+second_example.second_test = 2 # instance attribute
 
 """
     Check all attributes by __dict__ method
