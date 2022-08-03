@@ -40,3 +40,33 @@ try:
     classAttribute2.value = 10
 except AttributeError:
     print("Can't access!")
+
+
+class Example:
+    """
+    Class attribute
+    """
+    test = 1
+    pass
+
+
+class SecondExample:
+    """
+    Instance attribute
+    """
+    def __init__(self) -> None:
+        self.test = 1
+
+
+example = Example()
+
+second_example = SecondExample()
+
+"""
+    Check all attributes by __dict__ method
+    Checks instance attributes first and then class attributes
+"""
+
+print(example.test)
+print(example.__dict__)
+print(second_example.__dict__)
