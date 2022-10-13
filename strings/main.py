@@ -31,6 +31,19 @@ Indexing: my_string[3], index -1 is the last element
 Slice: creating substring - dessert = "apple pie" => dessert[0:5] => "apple"
 """
 
+dessert = 'apple pie'
+print(dessert[:5]) # apple
+print(dessert[6:]) # pie
+print(dessert[:]) # apple pie
+
+"""
+String are immutable! - returns a TypeError!
+"""
+word = 'programming'
+word[0] = 'a'
+
+
+
 
 
 
