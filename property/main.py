@@ -349,4 +349,37 @@ class LoggedCircle:
         except ValueError:
             logging.info('Validation error while mutating "radius"')
 
+"""
+@see https://mathspp.com/blog/pydonts/properties
 
+Here's the main takeaway of this Pydon't, for you, on a silver platter:
+
+“property is the Pythonic interface for adding dynamic behaviour to your interactions with attributes in classes.”
+
+This Pydon't showed you that:
+
+you can add dynamic dependencies between your class attributes;
+the decorator property will turn a method into a property attribute of the same name;
+there are a couple of rules of thumb to decide when to use a property;
+properties can be used to implement read-only attributes;
+property attributes can also be set if one makes use of the decorator @xxx.setter;
+you can use setters to add some data validation and normalisation to attribute setting;
+property attributes can also have deleter methods;
+the decorator property isn't really a decorator, but a descriptor (whatever that may mean); and
+the standard library has plenty of properties.
+"""
+
+class Person:
+    def __init__(self, first, last) -> None:
+        self._first = first
+        self._last = last
+
+
+    @property
+    def first(self):
+        return self._first
+
+
+user = Person('Jan', 'Kowalski')
+user._first = 'name' # because property is set to 'first' but we can change _first
+print(user.first)
