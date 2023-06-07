@@ -1,3 +1,8 @@
+"""
+Class attributes - will be shared across all instances of this class!
+Useful when you need to share sth between instances
+"""
+
 class MyClass:
     """
     Class with instance attribute
@@ -52,9 +57,14 @@ class Example:
 
 class SecondExample:
     """
-    Instance attribute
+    Instance attribute:
+    The 'self' keyword holds a reference to the current instance
+
     """
     def __init__(self) -> None:
+        """
+        Cannot access by SecondExample.test
+        """
         self.test = 1
 
 
@@ -71,3 +81,24 @@ second_example.second_test = 2 # instance attribute
 print(example.test)
 print(example.__dict__)
 print(second_example.__dict__)
+
+
+class ObjectCounter:
+    num_instances = 0
+
+    def __init__(self) -> None:
+        type(self).num_instances += 1
+        # ObjectCounter.num_instances += 1
+        
+        
+ObjectCounter()        
+ObjectCounter()        
+ObjectCounter()
+
+print(
+    ObjectCounter().num_instances
+)
+
+
+
+
