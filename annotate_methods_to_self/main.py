@@ -8,6 +8,7 @@ Learning returning Self, and some advanced type hinting from 3.11 - https://peps
 For python < 3.11 use 'from typing_extensions import Self' This is a 3rd party module
 """
 
+
 class Queue:
 
     def __init__(self):
@@ -26,6 +27,34 @@ class Queue:
         return len(self.items) > 0
 
 
-
 some_queue = Queue()
 some_queue.push(1).push(2).push(3)
+
+
+"""Using TypeVar"""
+TStack = TypeVar('TStack', bound="Stack")
+
+
+class Stack:
+
+    def __init__(self) -> None:
+        self.items: list[Any] = []
+
+    def push(self: TStack, item: Any) -> TStack:
+        self.items.append(item)
+        return self
+
+
+"""__future__ Module"""
+from __future__ import annotations
+
+class FututeStack:
+
+    def __init__(self) -> None:
+        self.items: list[Any] = []
+
+    def push(self, item: Any) -> FututeStack:
+        self.items.append(item)
+        return self
+
+
