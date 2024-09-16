@@ -1,6 +1,8 @@
 import asyncio
 import random
 """
+RUN MANY COROUTINES
+
 asyncio.gather() - takes multiple awaitables like coroutines or tasks
 and return the asyncio.Future object
 """
