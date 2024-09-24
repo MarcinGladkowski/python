@@ -1,6 +1,7 @@
-from hash_table.hashtable import BLANK, Pair
+from hash_table.hashtable import Pair
 from hashtable import HashTable
 import pytest
+from pytest_unordered import unordered
 
 
 def test_pair_namedtuple():
@@ -23,9 +24,8 @@ def test_should_create_hashtable():
 def test_should_return_capacity():
     assert len(HashTable(capacity=100)) == 100
 
-@pytest.mark.skip
 def test_should_create_empty_value_slots():
-    assert HashTable(capacity=3).pairs == [BLANK, BLANK, BLANK]
+    assert HashTable(capacity=3)._pairs == [None, None, None]
 
 @pytest.mark.skip
 def test_should_not_shrink_when_removing_elements():
@@ -47,12 +47,10 @@ def test_should_insert_key_value_pairs(sample_data):
 def test_should_insert_none_value():
     hast_table = HashTable(capacity=100)
     hast_table["key"] = None
-    assert None is hast_table["key"]
+    assert Pair("key", None) in hast_table.pairs
 
 def test_should_not_contain_none_value_when_created():
-    hash_table = HashTable(capacity=100)
-    values = [pair.value for pair in hash_table.pairs if pair]
-    assert None not in values
+    assert None not in HashTable(capacity=100).values
 
 def test_should_raise_error_on_missing_key():
     hash_table = HashTable(capacity=100)
@@ -113,3 +111,33 @@ def test_should_return_pairs(sample_data):
 
 def test_should_return_copy_of_pairs(sample_data):
     assert sample_data.pairs is not sample_data.pairs
+
+def test_should_not_include_blank_pairs(sample_data):
+    assert None not in sample_data.pairs
+
+def test_should_return_duplicated_values(sample_data):
+    hash_table = HashTable(capacity=100)
+
+    hash_table['Anna'] = 24
+    hash_table['Agnes'] = 42
+    hash_table["Adam"] = 42
+
+    assert [24, 42, 42] == sorted(hash_table.values)
+
+def test_should_get_values(sample_data):
+    assert unordered(sample_data.values) == ["hello", 37, True]
+
+def test_should_get_values_of_empty_hash_table(sample_data):
+    assert HashTable(capacity=100).values == []
+
+def test_should_return_copy_of_values(sample_data):
+    assert sample_data.values is not sample_data.values
+
+def test_should_get_keys(sample_data):
+    assert sample_data.keys == {"hola", 98.6, False}
+
+def test_should_keys_as_set_of_empty_hash_table(sample_data):
+    assert HashTable(capacity=100).keys == set()
+
+def test_should_return_copy_of_keys(sample_data):
+    assert sample_data.keys is not sample_data.keys
