@@ -1,7 +1,10 @@
-from hash_table.hashtable import Pair
-from hashtable import HashTable
+import os
+
+from hashtable import HashTable, Pair
 import pytest
 from pytest_unordered import unordered
+
+from unittest.mock import patch
 
 
 def test_pair_namedtuple():
@@ -22,7 +25,10 @@ def test_should_create_hashtable():
     assert HashTable(capacity=100) is not None
 
 def test_should_return_capacity():
-    assert len(HashTable(capacity=100)) == 100
+    assert len(HashTable(capacity=100)) == 0
+
+def test_should_return_length_of_sample_data_hash_table(sample_data):
+    assert len(sample_data) == 3
 
 def test_should_create_empty_value_slots():
     assert HashTable(capacity=3)._pairs == [None, None, None]
@@ -42,7 +48,7 @@ def test_should_insert_key_value_pairs(sample_data):
     assert (98.6, 37) in hash_table.pairs
     assert (True, False) in hash_table.pairs
 
-    assert len(sample_data) == 100
+    assert len(sample_data) == 3
 
 def test_should_insert_none_value():
     hast_table = HashTable(capacity=100)
@@ -85,24 +91,24 @@ def test_should_get_value_with_default(sample_data):
 def test_should_delete_key_value_pair(sample_data):
     assert "hola" in sample_data
     assert ("hola", "hello") in sample_data.pairs
-    assert len(sample_data) == 100
+    assert len(sample_data) == 3
 
     del sample_data["hola"]
 
     assert "hola" not in sample_data
     assert ("hola", "hello") not in sample_data.pairs
-    assert len(sample_data) == 100
+    assert len(sample_data) == 2
 
 def test_should_update_key_value_pair(sample_data):
     assert sample_data["hola"] == "hello"
-    assert len(sample_data) == 100
+    assert len(sample_data) == 3
 
     sample_data["hola"] = "hallo"
 
     assert sample_data['hola'] == "hallo"
     assert sample_data[98.6] == 37
     assert sample_data[False] == True
-    assert len(sample_data) == 100
+    assert len(sample_data) == 3
 
 def test_should_return_pairs(sample_data):
     assert ("hola", "hello") in sample_data.pairs
@@ -141,3 +147,139 @@ def test_should_keys_as_set_of_empty_hash_table(sample_data):
 
 def test_should_return_copy_of_keys(sample_data):
     assert sample_data.keys is not sample_data.keys
+
+def test_should_return_all_pairs(sample_data):
+    assert sample_data.pairs == unordered({
+        Pair("hola", "hello"),
+        Pair(98.6, 37),
+        Pair(False, True),
+    })
+
+def test_should_convert_to_dict(sample_data):
+    dictionary = dict(sample_data.pairs)
+
+    assert set(dictionary.keys()) == sample_data.keys
+    assert set(dictionary.items()) == sample_data.pairs
+    assert list(dictionary.values()) == unordered(sample_data.values)
+
+def test_should_not_create_hashtable_with_zero_capacity():
+    with pytest.raises(ValueError):
+        HashTable(capacity=0)
+
+def test_should_not_create_hashtable_with_negative_capacity():
+    with pytest.raises(ValueError):
+        HashTable(capacity=-1)
+
+def test_should_report_capacity_of_empty_hash_table():
+    assert HashTable(capacity=100).capacity == 100
+
+def test_should_report_capacity_of_sample_data_hash_table(sample_data):
+    assert sample_data.capacity == 100
+
+def test_should_iterate_over_keys(sample_data):
+    for key in sample_data.keys:
+        assert key in ("hola", 98.6, False)
+
+def test_should_iterate_over_values(sample_data):
+    for key in sample_data.values:
+        assert key in ("hello", 37, True)
+
+def test_should_iterate_over_pairs(sample_data):
+    for key, value in sample_data.pairs:
+        assert value in sample_data.values
+        assert key in sample_data.keys
+
+def test_should_iterate_over_instance(sample_data):
+    for key in sample_data:
+        assert key in ("hola", 98.6, False)
+
+@pytest.mark.skip
+def test_should_have_canonical_string_representation(sample_data):
+    assert repr(sample_data) in {
+        "HashTable.from_dict({'hola': 'hello', 98.6: 37, False: True})",
+        "HashTable.from_dict({'hola': 'hello', False: True, 98.6: 37})",
+        "HashTable.from_dict({98.6: 37, 'hola': 'hello', False: True})",
+        "HashTable.from_dict({98.6: 37, False: True, 'hola': 'hello'})",
+        "HashTable.from_dict({False: True, 'hola': 'hello', 98.6: 37})",
+        "HashTable.from_dict({False: True, 98.6: 37, 'hola': 'hello'})",
+    }
+
+def test_should_use_dict_literal_for_str(sample_data):
+    assert str(sample_data) in {
+        "{'hola': 'hello', 98.6: 37, False: True}",
+        "{'hola': 'hello', False: True, 98.6: 37}",
+        "{98.6: 37, 'hola': 'hello', False: True}",
+        "{98.6: 37, False: True, 'hola': 'hello'}",
+        "{False: True, 'hola': 'hello', 98.6: 37}",
+        "{False: True, 98.6: 37, 'hola': 'hello'}",
+    }
+
+def test_should_compare_equal_to_itself(sample_data):
+    assert sample_data == sample_data
+
+def test_should_compare_equal_to_copy(sample_data):
+    assert sample_data is not sample_data.copy()
+    assert sample_data == sample_data.copy()
+
+def test_should_compare_equal_different_key_value_order(sample_data):
+    h1 = HashTable.from_dict({"a": 1, "b": 2, "c": 3})
+    h2 = HashTable.from_dict({"b": 2, "a": 1, "c": 3})
+    assert h1 == h2
+
+def test_should_compare_unequal(sample_data):
+    other = HashTable.from_dict({"some": "data"})
+    assert sample_data != other
+
+def test_should_compare_unequal_another_data_keys(sample_data):
+    assert sample_data != 42
+
+def test_should_copy_keys_value_pairs_capacity(sample_data):
+    copy = sample_data.copy()
+
+    assert copy is not sample_data
+    assert set(sample_data.keys) == set(copy.keys)
+    assert unordered(sample_data.values) == copy.values
+    assert set(sample_data.pairs) == copy.pairs
+    assert sample_data.capacity == copy.capacity
+
+def test_should_compare_equal_different_capacity(sample_data):
+    data = {1: 'a', 2: 'b'}
+
+    h1 = HashTable.from_dict(data, capacity=50)
+    h2 = HashTable.from_dict(data, capacity=100)
+
+    assert h1 == h2
+
+def test_should_create_hashtable_from_dict(sample_data):
+    data = {"hola": "hello", 98.6: 37, False: True}
+
+    hash_table = HashTable.from_dict(data)
+
+    assert hash_table.capacity == len(data) * 10
+    assert hash_table.pairs == set(data.items())
+    assert unordered(hash_table.values) == list(data.values())
+    assert hash_table.keys == set(data.keys())
+
+
+def test_of_reduce_capacity():
+    data = {"hola": "hello", 98.6: 37, False: True}
+    hash_table = HashTable.from_dict(data, capacity=len(data))
+    """
+        With PYTHONHASHSEED=0 the string returned randomly
+        content of hash_table. One time has 2 elements, another 1 ...
+    """
+    print(str(hash_table))
+
+    assert True
+
+@pytest.mark.skip
+def test_collision():
+    print(os.environ.get('PYTHONHASHSEED'))
+    assert (hash('easy') % 100) == (hash('difficult') % 100)
+
+@patch("builtins.hash", return_value=42)
+def test_should_detect_hash_collision(sample_data):
+    """
+       decorator patch allows us to replace builtin python hash function return value
+    """
+    assert hash('developer') == 42

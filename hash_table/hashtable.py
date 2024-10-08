@@ -14,7 +14,12 @@ Pair = namedtuple(
 
 
 class HashTable:
-    def __init__(self, capacity):
+    """
+        For exercise to implement:
+        https://realpython.com/python-bitwise-operators/
+        https://peps.python.org/pep-0584/
+    """
+    def __init__(self, capacity: int):
         """
         self.pairs should not be accessed directly
 
@@ -30,10 +35,13 @@ class HashTable:
         internal implementation
 
         """
+        if (capacity < 1):
+            raise ValueError('capacity must be at least 1')
+
         self._pairs = capacity * [None]
 
     def __len__(self):
-        return len(self._pairs)
+        return len(self.pairs)
 
     def __setitem__(self, key, value):
         """
@@ -70,17 +78,68 @@ class HashTable:
         else:
             raise KeyError(key)
 
+    def __iter__(self):
+        """
+        Make class iterable to use it in loops
+
+        keyword: yield for using as generator iterator
+
+        for key in instance:
+            # ...
+        """
+        yield from self.keys
+
+    def __repr__(self):
+        cls = self.__class__.__name__
+        return f"{cls}.from_dict({str(self)})"
+
+    def __str__(self):
+        pairs = []
+        for key, value in self.pairs:
+            pairs.append(f"{key!r}: {value!r}") # !r cals __repr__ adding single apostrophes
+        return "{" + ", ".join(pairs) + "}"
+
+    @classmethod
+    def from_dict(cls, dictionary, capacity=None):
+        hash_table = cls(capacity or len(dictionary) * 10)
+        for key, value in dictionary.items():
+            hash_table[key] = value
+        return hash_table
+
     @property
     def keys(self):
         return {pair.key for pair in self._pairs if pair}
 
     @property
     def pairs(self):
-        return [pair for pair in self._pairs if pair]
+        return {pair for pair in self._pairs if pair}
 
     @property
     def values(self):
         return [pair.value for pair in self._pairs if pair]
 
+    @property
+    def capacity(self):
+        return len(self._pairs)
+
     def _index(self, key):
-        return hash(key) % len(self)
+        return hash(key) % self.capacity
+
+    def __eq__(self, other):
+        if self is other:
+            return True
+        if type(self) is not type(other):
+            return False
+        return set(self.pairs) == set(other.pairs)
+
+    def copy(self):
+        return HashTable.from_dict(dict(self.pairs), capacity=self.capacity)
+
+    def clear(self):
+        """To implement as exercise"""
+        pass
+
+    def update(self):
+        """To implement as exercise"""
+        pass
+
