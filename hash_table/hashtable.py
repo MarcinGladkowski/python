@@ -1,7 +1,30 @@
 from collections import namedtuple
 from typing import NamedTuple, Any
 
+"""
+Python Glossary
+
+Sentinel value
+Space-time tradeoff https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff
+Sweet Spot
+
+Addressing hash collisions:
+- Perfect hashing (https://en.wikipedia.org/wiki/Perfect_hash_function)
+- Open addressing
+- Closed addressing
+
+Open addressing:
+- Cuckoo hashing
+- Double hashing
+- Hopscotch hashing
+- Quadratic hashing
+- Robin Hood hashing
+"""
+
+
+
 BLANK = object()
+DELETED = object()
 
 # class Pair(NamedTuple):
 #     key: Any
@@ -19,7 +42,7 @@ class HashTable:
         https://realpython.com/python-bitwise-operators/
         https://peps.python.org/pep-0584/
     """
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int = 8, load_factor_threshold: float = 0.6):
         """
         self.pairs should not be accessed directly
 
@@ -35,10 +58,13 @@ class HashTable:
         internal implementation
 
         """
-        if (capacity < 1):
-            raise ValueError('capacity must be at least 1')
+        if capacity < 1:
+            raise ValueError('Capacity must be a positive number')
+        if not (0 < load_factor_threshold <= 1):
+            raise ValueError('Load factor threshold must be between 0 and 1')
 
         self._pairs = capacity * [None]
+        self._load_factor_threshold = load_factor_threshold
 
     def __len__(self):
         return len(self.pairs)
@@ -46,14 +72,31 @@ class HashTable:
     def __setitem__(self, key, value):
         """
         Methods is called every time when we use [key] = value
-        """
+        Previous implementation:
         self._pairs[self._index(key)] = Pair(key, value)
+        """
+        if self.load_factor >= self._load_factor_threshold:
+            self._resize_and_rehash()
+
+        for index, pair in self._probe(key):
+            if pair is DELETED: continue
+            if pair is None or pair.key == key:
+                self._pairs[index] = Pair(key, value)
+                break
+        else:
+            self._resize_and_rehash()
+            self[key] = value
 
     def __getitem__(self, key):
-        pair = self._pairs[self._index(key)]
-        if pair is None:
-            raise KeyError(key)
-        return pair.value
+        for _, pair in self._probe(key):
+            if pair is None:
+                raise KeyError(key)
+            if pair is DELETED:
+                continue
+            if pair.key == key:
+                return pair.value
+        raise KeyError(key)
+
 
     def __contains__(self, item):
         """
@@ -73,8 +116,14 @@ class HashTable:
             return default
 
     def __delitem__(self, key):
-        if key in self:
-            self._pairs[self._index(key)] = None
+        for index, pair in self._probe(key):
+            if pair is None:
+                raise KeyError(key)
+            if pair is DELETED:
+                continue
+            if pair.key == key:
+                self._pairs[index] = DELETED
+                break
         else:
             raise KeyError(key)
 
@@ -101,7 +150,7 @@ class HashTable:
 
     @classmethod
     def from_dict(cls, dictionary, capacity=None):
-        hash_table = cls(capacity or len(dictionary) * 10)
+        hash_table = cls(capacity or len(dictionary))
         for key, value in dictionary.items():
             hash_table[key] = value
         return hash_table
@@ -112,7 +161,9 @@ class HashTable:
 
     @property
     def pairs(self):
-        return {pair for pair in self._pairs if pair}
+        return {
+            pair for pair in self._pairs if pair not in (None, DELETED)
+        }
 
     @property
     def values(self):
@@ -122,8 +173,19 @@ class HashTable:
     def capacity(self):
         return len(self._pairs)
 
+    @property
+    def load_factor(self):
+        occupied_or_deleted = [pair for pair in self._pairs if pair]
+        return len(occupied_or_deleted) / self.capacity
+
     def _index(self, key):
         return hash(key) % self.capacity
+
+    def _probe(self, key) -> [int, Pair]:
+        index = self._index(key)
+        for _ in range(self.capacity):
+            yield index, self._pairs[index] # _slots
+            index = (index + 1) % self.capacity
 
     def __eq__(self, other):
         if self is other:
@@ -142,4 +204,11 @@ class HashTable:
     def update(self):
         """To implement as exercise"""
         pass
+
+    def _resize_and_rehash(self):
+        copy = HashTable(capacity=self.capacity * 2)
+        for key, value in self.pairs:
+            copy[key] = value
+        self._pairs = copy._pairs
+
 

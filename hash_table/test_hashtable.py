@@ -255,7 +255,7 @@ def test_should_create_hashtable_from_dict(sample_data):
 
     hash_table = HashTable.from_dict(data)
 
-    assert hash_table.capacity == len(data) * 10
+    assert hash_table.capacity == 6 # factor
     assert hash_table.pairs == set(data.items())
     assert unordered(hash_table.values) == list(data.values())
     assert hash_table.keys == set(data.keys())
@@ -283,3 +283,15 @@ def test_should_detect_hash_collision(sample_data):
        decorator patch allows us to replace builtin python hash function return value
     """
     assert hash('developer') == 42
+
+@patch("builtins.hash", return_value=24)
+def test_should_using_linear_probe_updating_value_while_hash_collision(sample_data):
+
+    hash_table = HashTable(capacity=100)
+    hash_table['easy'] = 'easy'
+    hash_table['difficult'] = 'difficult'
+
+    assert hash_table._pairs[24].value == 'easy'
+    assert hash_table._pairs[25].value == 'difficult'
+
+
