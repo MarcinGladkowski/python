@@ -1,5 +1,4 @@
-from collections import namedtuple
-from typing import NamedTuple, Any
+from collections import namedtuple, deque
 
 """
 Python Glossary
@@ -22,9 +21,7 @@ Open addressing:
 """
 
 
-
 BLANK = object()
-DELETED = object()
 
 # class Pair(NamedTuple):
 #     key: Any
@@ -63,11 +60,12 @@ class HashTable:
         if not (0 < load_factor_threshold <= 1):
             raise ValueError('Load factor threshold must be between 0 and 1')
 
-        self._pairs = capacity * [None]
+        self._keys = []
+        self._buckets = [deque() for _ in range(capacity)]
         self._load_factor_threshold = load_factor_threshold
 
     def __len__(self):
-        return len(self.pairs)
+        return len(self.keys)
 
     def __setitem__(self, key, value):
         """
@@ -78,21 +76,19 @@ class HashTable:
         if self.load_factor >= self._load_factor_threshold:
             self._resize_and_rehash()
 
-        for index, pair in self._probe(key):
-            if pair is DELETED: continue
+        bucket = self._buckets[self._index(key)]
+        for index, pair in enumerate(bucket):
             if pair is None or pair.key == key:
-                self._pairs[index] = Pair(key, value)
+                bucket[index] = Pair(key, value)
                 break
         else:
-            self._resize_and_rehash()
-            self[key] = value
+            #self._resize_and_rehash() # ?
+            bucket.append(Pair(key, value))
+            self._keys.append(key)
 
     def __getitem__(self, key):
-        for _, pair in self._probe(key):
-            if pair is None:
-                raise KeyError(key)
-            if pair is DELETED:
-                continue
+        bucket = self._buckets[self._index(key)]
+        for _, pair in enumerate(bucket):
             if pair.key == key:
                 return pair.value
         raise KeyError(key)
@@ -116,13 +112,11 @@ class HashTable:
             return default
 
     def __delitem__(self, key):
-        for index, pair in self._probe(key):
-            if pair is None:
-                raise KeyError(key)
-            if pair is DELETED:
-                continue
+        bucket = self._buckets[self._index(key)]
+        for index, pair in enumerate(bucket):
             if pair.key == key:
-                self._pairs[index] = DELETED
+                del self._buckets[index]
+                self._keys.remove(key)
                 break
         else:
             raise KeyError(key)
@@ -157,25 +151,23 @@ class HashTable:
 
     @property
     def keys(self):
-        return {pair.key for pair in self._pairs if pair}
+        return self._keys.copy()
 
     @property
     def pairs(self):
-        return {
-            pair for pair in self._pairs if pair not in (None, DELETED)
-        }
+        return [(key, self[key]) for key in self.keys]
 
     @property
     def values(self):
-        return [pair.value for pair in self._pairs if pair]
+        return [self[key] for key in self._keys]
 
     @property
     def capacity(self):
-        return len(self._pairs)
+        return len(self._buckets)
 
     @property
     def load_factor(self):
-        occupied_or_deleted = [pair for pair in self._pairs if pair]
+        occupied_or_deleted = [pair for pair in self._buckets if pair]
         return len(occupied_or_deleted) / self.capacity
 
     def _index(self, key):
@@ -184,7 +176,7 @@ class HashTable:
     def _probe(self, key) -> [int, Pair]:
         index = self._index(key)
         for _ in range(self.capacity):
-            yield index, self._pairs[index] # _slots
+            yield index, self._buckets[index] # _slots
             index = (index + 1) % self.capacity
 
     def __eq__(self, other):
@@ -209,6 +201,6 @@ class HashTable:
         copy = HashTable(capacity=self.capacity * 2)
         for key, value in self.pairs:
             copy[key] = value
-        self._pairs = copy._pairs
+        self._buckets = copy._buckets
 
 
