@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect(":memory:")
+connection = sqlite3.connect(":memory:") # or dedidated database.db
 cursor = connection.cursor()
 
 cursor.execute("CREATE TABLE user(first_name, last_name)")
