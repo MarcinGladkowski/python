@@ -6,7 +6,7 @@ From https://dev.to/jamesbright/10-python-programming-optimisation-techniques-5c
 # Packing data to binary - data processing more efficient
 import struct
 
-from dict.missing import open_picture
+from dictionaries.missing import open_picture
 
 # packing two integers into binary format
 packed_data = struct.pack('ii', 10, 20)
