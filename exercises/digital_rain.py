@@ -48,7 +48,7 @@ def iterate():
 CHARSET = [chr(x) for x in range(0x30a1, 0x30fb)]
 
 def draw():
-    o = ["\x1b[2J\x1b[1;1H]"]
+    o = ["\x1b[2J\x1b[1;1H"]
 
     for y in range(H):
         for x in range(W):
