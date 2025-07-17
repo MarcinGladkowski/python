@@ -1,4 +1,14 @@
 """
+* https://realpython.com/python-init-py
+
+__init__.py declares a folder as a regular python package
+Without this file directory is treated as namespace package
+Importing packages is faster
+
+module vs package in python
+
+modules help organize python single files but packages helps organize multiple python modules
+
 We can use __all__ what is imported when * is using for it.
 
 __init__.py -> they are optional from Python 3.3
