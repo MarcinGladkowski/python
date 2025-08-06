@@ -52,3 +52,14 @@ Global scope
 - all scopes can access to global scope
 """
 super_global_total = 100
+
+
+x = 5
+
+def foo():
+    global x # affects global variable
+    x = 999
+    print(x)
+    
+foo()
+print(x)
