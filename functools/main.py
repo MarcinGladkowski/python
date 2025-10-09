@@ -4,7 +4,7 @@ Cache (memoize)
 - useful when we have repetitive results, calculations
 - for properties @cached_property
 """
-from functools import cache, reduce
+from functools import cache, reduce, accumulate
 from operator import mul, add
 
 
@@ -110,3 +110,8 @@ print(product)  # Output: 24 (1*2*3*4=24)
 
 summation = reduce(add, numbers)
 print(summation)  # Output: 10 (1+2+3+4)
+
+
+# Accumulate usage:
+accumulated_sum = list(accumulate(numbers, add))
+print(accumulated_sum)  # Output: [1, 3, 6, 10] (1, 1+2, 1+2+3, 1+2+3+4)
