@@ -103,3 +103,11 @@ my_list = [1, 2, 3]
 
 a, *b, c = my_list # b -> rest of elements from the middle
 
+
+def pow_(x, y, *, modulo=None):
+    """
+    Example of using * to force keyword arguments
+    """
+    return pow(x, y, modulo)
+
+print('pow_ function result', pow_(2, 3, modulo=3))
