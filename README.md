@@ -6,7 +6,7 @@
 ---
 To start create a new virtual environment based on newest version of python3
 ```shell
-python3 -m venv
+python3 -m venv .venv
 ```
 Then activate it
 ```shell
