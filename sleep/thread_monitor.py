@@ -4,10 +4,10 @@ import logging
 WORKER_INTERVAL = 1
 MAIN_INTERVAL = 0.75
 
-def worker(event):
+def worker(event, worker_time_interval):
     while not event.is_set():
-        logging.debug("Worker thread check in")
-        event.wait(WORKER_INTERVAL)
+        logging.debug(f"Worker thread check in {worker_time_interval}")
+        event.wait(worker_time_interval)
         
 
 def main():
@@ -19,8 +19,8 @@ def main():
     
     event = threading.Event()
     
-    thread_one = threading.Thread(target=worker, args=(event,))
-    thread_two = threading.Thread(target=worker, args=(event,))
+    thread_one = threading.Thread(target=worker, args=(event, 2))
+    thread_two = threading.Thread(target=worker, args=(event, 4))
     
     thread_one.start()
     thread_two.start()
